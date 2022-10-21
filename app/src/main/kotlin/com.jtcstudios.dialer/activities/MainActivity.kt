@@ -163,8 +163,6 @@ class MainActivity : SimpleActivity() {
                 R.id.clear_call_history -> clearCallHistory()
                 R.id.create_new_contact -> launchCreateNewContactIntent()
                 R.id.sort -> showSortingDialog(showCustomSorting = getCurrentFragment() is FavoritesFragment)
-                R.id.settings -> launchSettings()
-                R.id.about -> launchAbout()
                 else -> return@setOnMenuItemClickListener false
             }
             return@setOnMenuItemClickListener true
@@ -457,29 +455,6 @@ class MainActivity : SimpleActivity() {
             telecomManager.cancelMissedCallsNotification()
         } catch (ignored: Exception) {
         }
-    }
-
-    private fun launchSettings() {
-        closeSearch()
-        hideKeyboard()
-        startActivity(Intent(applicationContext, SettingsActivity::class.java))
-    }
-
-    private fun launchAbout() {
-        closeSearch()
-        val licenses = LICENSE_GLIDE or LICENSE_INDICATOR_FAST_SCROLL or LICENSE_AUTOFITTEXTVIEW
-
-        val faqItems = arrayListOf(
-            FAQItem(R.string.faq_1_title, R.string.faq_1_text),
-            FAQItem(R.string.faq_9_title_commons, R.string.faq_9_text_commons)
-        )
-
-        if (!resources.getBoolean(R.bool.hide_google_relations)) {
-            faqItems.add(FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons))
-            faqItems.add(FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons))
-        }
-
-        startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)
     }
 
     private fun showSortingDialog(showCustomSorting: Boolean) {
