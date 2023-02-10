@@ -12,7 +12,7 @@ android {
     compileSdkVersion 33
 
     defaultConfig {
-        applicationId "com.jtcstudios.dialer"
+        applicationId "com.jtcstudios.dialerlite"
         minSdkVersion 29
         targetSdkVersion 33
         versionCode 1
@@ -54,11 +54,12 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
-
-    lintOptions {
-        checkReleaseBuilds false
+    lint {
         abortOnError false
+        checkReleaseBuilds false
     }
+    namespace 'com.simplemobiletools.dialer'
+
 }
 
 dependencies {
